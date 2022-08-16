@@ -2,6 +2,10 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 import AuthService from "../../services/auth.service";
 import { Link } from "react-router-dom";
+import style from './style.module.scss';
+import Logo from '../../images/logo.png';
+import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function Header() {
 
@@ -30,10 +34,58 @@ export default function Header() {
   }, [])
 
   return (
-    <header>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
+    < header className={style.header} >
+      <a href="/"><img src={Logo} alt="3dLab" className={style.logo} /></a>
+      <div className={style.buscaContainer}>
+        <input
+          type="search"
+          name="buscaProduto"
+          className={style.input}
+          placeholder="Buscar Produto" />
+        <button className={style.buscaBtn}>Buscar</button>
+      </div>
+      <nav className={style.nav}>
+        {currentUser ? (
+          <div className="navbar-nav ml-auto">
+            <li className="nav-item">
+              <Link to={"/profile"} className="nav-link">
+                {currentUser.username}
+              </Link>
+            </li>
+            <li className="nav-item">
+              <a href="/login" className="nav-link" onClick={logOut}>
+                LogOut
+              </a>
+            </li>
+          </div>
+        ) : (
+          <div className="navbar-nav ml-auto">
+            <a href="/login">
+              <div className={style.iconContainer}>
+                <FontAwesomeIcon icon={faUser} className={style.icon} />
+                <p>Entrar<br />Cadastrar</p>
+              </div></a>
+          </div>
+        )}
+
+
+        <div className={style.iconContainer}>
+          <div className={style.quantidade}>1</div>
+          <FontAwesomeIcon icon={faShoppingCart} className={style.icon} />
+        </div>
+        <div className={style.valorTotalContainer}>
+          <small className={style.small}>Total</small>
+          <p className={style.valorTotal}>100</p>
+        </div>
+      </nav>
+    </ header >
+  )
+}
+
+
+{/* <nav className="navbar navbar-expand">
         <Link to={"/"} className="navbar-brand">
-          bezKoder
+          <img src={Logo} className={style.logo} alt="logo" />
         </Link>
         <div className="navbar-nav mr-auto">
           <li className="nav-item">
@@ -95,7 +147,4 @@ export default function Header() {
             </li>
           </div>
         )}
-      </nav>
-    </header>
-  )
-}
+      </nav> */}

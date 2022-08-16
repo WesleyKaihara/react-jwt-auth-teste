@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
-
-import AuthService from "../services/auth.service";
+import style from './style.module.scss';
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -82,11 +82,11 @@ export default class Login extends Component {
   render() {
     return (
       <div className="col-md-12">
-        <div className="card card-container">
+        <div className={style.card && style.card_container}>
           <img
             src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
             alt="profile-img"
-            className="profile-img-card"
+            className={style.profile_img_card}
           />
 
           <Form
@@ -96,7 +96,7 @@ export default class Login extends Component {
             }}
           >
             <div className="form-group">
-              <label htmlFor="username">Username</label>
+              <label className={style.label} htmlFor="username">Username</label>
               <Input
                 type="text"
                 className="form-control"
@@ -108,7 +108,7 @@ export default class Login extends Component {
             </div>
 
             <div className="form-group">
-              <label htmlFor="password">Password</label>
+              <label className={style.label} htmlFor="password">Password</label>
               <Input
                 type="password"
                 className="form-control"
@@ -146,7 +146,7 @@ export default class Login extends Component {
             />
           </Form>
         </div>
-      </div>
+      </div >
     );
   }
 }

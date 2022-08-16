@@ -1,0 +1,34 @@
+$color1:#40ffdc;
+$color2:#336ee1;
+$color3:#1c3166;
+$color4:#240047;
+$color5:#1c0021;
+$color6:#f1f1f1;
+
+
+.contatoContainer{
+  .bannerContainer{
+    background: #fff;
+    height: 25em;
+    overflow: hidden;
+    text-align: center;
+    position: relative;
+    .banner{
+      width:100%;
+      height: 100%;
+    }
+  }
+  .title{
+    position: absolute;
+    top: 0;
+    padding-top: 3em;
+    width: 100%;
+    text-align: center;
+    font-size:4em;
+    font-weight: bold;
+    color: $color4; 
+    height: 25em;
+    -webkit-backdrop-filter: blur(3px);
+    backdrop-filter: blur(3px);
+  }
+}

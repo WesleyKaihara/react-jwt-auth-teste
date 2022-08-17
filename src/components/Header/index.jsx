@@ -46,18 +46,9 @@ export default function Header() {
       </div>
       <nav className={style.nav}>
         {currentUser ? (
-          <div className="navbar-nav ml-auto">
-            <li className="nav-item">
-              <Link to={"/profile"} className="nav-link">
-                {currentUser.username}
-              </Link>
-            </li>
-            <li className="nav-item">
-              <a href="/login" className="nav-link" onClick={logOut}>
-                LogOut
-              </a>
-            </li>
-          </div>
+          <Link to={"/profile"}>
+            {currentUser.username}
+          </Link>
         ) : (
           <div className="navbar-nav ml-auto">
             <a href="/login">
@@ -77,6 +68,11 @@ export default function Header() {
           <small className={style.small}>Total</small>
           <p className={style.valorTotal}>100</p>
         </div>
+        {currentUser ? (
+          <a href="/login" className="nav-link" onClick={logOut}>
+            Sair
+          </a>
+        ) : null}
       </nav>
     </ header >
   )

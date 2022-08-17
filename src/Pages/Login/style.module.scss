@@ -1,33 +1,63 @@
-.label {
-  display: block;
-  margin-top: 10px;
-}
+$color1:#40ffdc;
+$color2:#336ee1;
+$color3:#1c3166;
+$color4:#240047;
+$color5:#1c0021;
+$color6:#f1f1f1;
 
-.card_container{
-  max-width: 350px !important;
-  padding: 40px 40px;
-  margin: auto;
-}
-
-.card {
-  background-color: #f7f7f7;
-  padding: 20px 25px 30px;
-  margin: 0 auto 25px;
-  margin-top: 50px;
-  -moz-border-radius: 2px;
-  -webkit-border-radius: 2px;
-  border-radius: 2px;
-  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.profile_img_card {
-  width: 96px;
-  height: 96px;
-  margin: 0 auto 10px;
-  display: block;
-  -moz-border-radius: 50%;
-  -webkit-border-radius: 50%;
-  border-radius: 50%;
+.login{
+  height: 40em;
+  overflow: hidden;
+  .fundo{
+    width: 100%;
+    -webkit-clip-path: polygon(54% 0, 100% 0, 100% 100%, 43% 100%);
+clip-path: polygon(54% 0, 100% 0, 100% 100%, 43% 100%);
+    position: absolute;
+  }
+  .loginContainer{
+    position: absolute;
+    left: 15%;
+    top:35%;
+    z-index: 888;
+    .newConta{
+      margin: 1em 0 ;
+      a{
+        color: $color2;
+        &:hover{
+          text-decoration: underline !important;
+        }
+      }
+    }
+    .title{
+      font-size: 3em;
+      color: $color5;
+      font-weight: bold;
+    }
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+    label{
+      margin: .5em 0 0 ;
+      font-size: 2em;
+    }
+    input,.formBtn{
+      width: 100%;
+      padding: 1em;
+      margin: 1em 0;
+      border: 1px solid #ccc;
+    }
+    &Btn{
+      cursor: pointer;
+      background: $color2;
+      border: none;
+      padding: 1em !important;
+      transition: all .5s ease;
+      font-size: 1.1em;
+      color: $color6;
+      &:hover{
+        filter: brightness(120%);
+      }
+    }
+  }
 }

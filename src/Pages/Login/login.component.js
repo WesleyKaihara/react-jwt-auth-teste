@@ -6,43 +6,17 @@ import AuthService from "../../services/auth.service";
 import fundo from '../../images/banner02.jpg';
 import { useState } from 'react';
 
-const required = value => {
-  if (!value) {
-    return (
-      <div className="alert alert-danger" role="alert">
-        This field is required!
-      </div>
-    );
-  }
-};
-
 export default function Login() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
 
   function handleLogin(e) {
     e.preventDefault();
 
-    setMessage("");
-    setLoading(true);
-
     AuthService.login(username, password).then(
       () => {
         window.location = "/profile";
-      },
-      error => {
-        const resMessage =
-          (error.response &&
-            error.response.data &&
-            error.response.data.message) ||
-          error.message ||
-          error.toString();
-
-        setLoading(false);
-        setMessage(resMessage);
       }
     );
   }

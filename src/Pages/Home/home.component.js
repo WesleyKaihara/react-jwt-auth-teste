@@ -36,27 +36,31 @@ export default function Home() {
   }, [])
   console.log(produtos);
   return (
-    <div className="container">
-      <div className={style.banner}>
-        <img src={banner} alt="banner" />
+    <section>
+      <div className={style.container}>
+        <h1 className={style.title}>Novidades</h1>
+        <div className="content">
+          {(produtos.length > 0) ? (
+            produtos.map(produto => {
+              return (
+                <Card
+                  href={produto.id}
+                  key={produto.id}
+                  src={produto.nomeImagem}
+                  alt={produto.nome}
+                  title={produto.nome}
+                  valor={produto.valor}
+                />
+              )
+            })
+          )
+            : <p>Carregando...</p>}
+        </div>
+        <div>
+
+        </div>
       </div>
-      <div className="content">
-        {(produtos.length > 0) ? (
-          produtos.map(produto => {
-            return (
-              <Card
-                key={produto.id}
-                src={produto.nomeImagem}
-                alt={produto.nome}
-                title={produto.nome}
-                valor={produto.valor}
-              />
-            )
-          })
-        )
-          : null}
-      </div>
-    </div >
+    </section >
   );
 }
 

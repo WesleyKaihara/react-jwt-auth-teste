@@ -1,0 +1,79 @@
+$color1:#40ffdc;
+$color2:#336ee1;
+$color3:#1c3166;
+$color4:#240047;
+$color5:#1c0021;
+$color6:#f1f1f1;
+
+
+.container{
+  padding: 6em 10%;
+  flex-wrap: wrap;
+  .img{
+    width:35em;
+    height: 32em;
+    padding: 0 2em;
+  }
+  .produtoContainer{
+    display: flex;
+    justify-content: space-between;
+    gap: 2em;
+  form{
+    width:100%;
+  }
+  .produtoInfo{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    .disponibilidade{
+      margin: 1em 0;
+      color: green;
+    }
+    .valor{
+      font-size: 1.3em;
+      color: #444;
+    }
+    .descricao{
+      color: #444;
+      margin: 1em 0;
+      text-align: justify;
+    }
+    small{
+      font-size: .8em;
+      margin: .5em 0 ;
+    }
+    .title{
+      font-size: 2.5em;
+    }
+    .select,option{
+      padding: .7em;
+      width: 100%;
+    }
+    .select{
+      margin-bottom: 1em;
+    }
+    .subTitle{
+      margin: .5em 0;
+    }
+    .quantidadeInput{
+      width: 20%;
+      padding: .5em;
+      margin-bottom: 1em;
+    }
+  .btn{
+    background: $color2;
+    border: none;
+    padding:.8em 1.5em;
+    color: $color6;
+    font-size: 1em;
+    cursor: pointer;
+    transition: all .5s ease;
+    &:hover{
+      filter: brightness(120%);
+    }
+  }
+  }
+  }
+}

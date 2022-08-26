@@ -5,12 +5,15 @@ import style from './style.module.scss';
 import Logo from '../../images/logo.png';
 import { faShoppingCart, faUser } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import axios from 'axios';
+import authHeader from '../../services/auth-header';
 
 export default function Header() {
 
   const [showModeratorBoard, setShowModeratorBoard] = useState(false);
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
+  const [quantidade, setQuantidade] = useState(0);
 
   function logOut() {
     AuthService.logout();
@@ -29,6 +32,12 @@ export default function Header() {
       setShowModeratorBoard(user.roles.includes("ROLE_MODERATOR"))
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"))
     }
+
+    axios.get("http://localhost:8080/carrinhoCompras",{ headers: authHeader() })
+      .then(res => {
+        console.log(res.data);
+        setQuantidade(res.data.length);
+      })
 
   }, [])
 
@@ -59,10 +68,13 @@ export default function Header() {
         )}
 
 
-        <div className={style.iconContainer}>
-          <div className={style.quantidade}>1</div>
-          <FontAwesomeIcon icon={faShoppingCart} className={style.icon} />
-        </div>
+        <a href="/carrinhoCompras">
+          <div className={style.iconContainer}>
+            <div className={style.quantidade}>{quantidade}</div>
+            <FontAwesomeIcon icon={faShoppingCart} className={style.icon} />
+          </div>
+        </a>
+
         <div className={style.valorTotalContainer}>
           <small className={style.small}>Total</small>
           <p className={style.valorTotal}>100</p>

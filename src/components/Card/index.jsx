@@ -3,12 +3,17 @@ import style from './style.module.scss';
 
 export default function Card(props) {
 
-  const { src, alt, title, valor } = props
+  const { src, alt, title, valor, href } = props
   return (
-    <div>
-      <img src={require("../../../../../../imagens/" + src)} alt={alt} />
-      <h1>{title}</h1>
-      <h2>{valor}</h2>
-    </div>
+    <a href={"/produto/" + href}>
+      <div className={style.card}>
+        <img src={require("../../../../../../imagens/" + src)} alt={alt} className={style.cardImg} />
+        <h1 className={style.title}>{title}</h1>
+        <small className={style.valor}>à vista</small>
+        <h2 className={style.valor}>R${valor},00</h2>
+        <small>10% de desconto no PIX</small>
+      </div >
+    </a>
+
   )
 }

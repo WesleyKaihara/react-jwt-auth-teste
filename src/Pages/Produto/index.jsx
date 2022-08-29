@@ -25,7 +25,22 @@ export default function Produto() {
       (response.data)?setIsInCart(true):setIsInCart(false));
   }, [id]);
 
+
   const user = AuthService.getCurrentUser();
+
+  function addToCart(){
+    axios.post("http://localhost:8080/carrinhoCompras",
+    { headers: authHeader(),
+        idCliente: user.id,
+        idProduto: parseInt(id),
+        peso:peso,
+        diametro:diametro,
+        quantidade:quantidade
+      }
+    );
+    window.location.reload();
+  }
+
   return (
     <div className={style.container}>
       {(info) ?
@@ -42,12 +57,11 @@ export default function Produto() {
             <h3 className={style.valor}>R${info.valor},00</h3>
             <small>À vista no PIX com até 10% OFF</small>
             <p className={style.descricao}>{info.descricao}</p>
-            <form action="http://localhost:8080/carrinhoCompras" method='POST'>
               <input type="hidden" name="idCliente" value={user.id} />
-              <input type="hidden" name="id_produto" value={id} />
+              <input type="hidden" name="idProduto" value={parseInt(id)} />
                 <h2 className={style.subTitle}>Peso</h2>
                 <select 
-                name="quantidade" 
+                name="peso" 
                 className={style.select}
                 value={peso}
                 onChange={(e)=> setPeso(e.value)}            
@@ -62,7 +76,7 @@ export default function Produto() {
                 name="diametro" 
                 className={style.select}   
                 value={diametro}
-                onChange={(e)=> setDiametro(e.value)}              
+                onChange={(e)=> setDiametro(e.value)}        
                 >
                   <option value="1.75">1,75mm</option>
                   <option value="2.85">2,85mm</option>
@@ -77,14 +91,10 @@ export default function Produto() {
                 /><br />
                 {(isInCart) ?
               <a href="/carrinhoCompras"><p className={style.btn}>Ir para Carrinho</p></a>:
-              <button type="submit" className={style.btn}>Adicionar ao carrinho</button>
+              <button type="submit" className={style.btn} onClick={e => addToCart()}>Adicionar ao carrinho</button>
             }
-            </form>
-            
-            
             </div>
           </div>
-          
         </>
         : <p>Carregando...</p>
       }

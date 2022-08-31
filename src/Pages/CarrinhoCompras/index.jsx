@@ -9,14 +9,14 @@ export default function CarrinhoCompras() {
   
   const [listaPedidos,setListaPedidos] = useState([]);
   const [listaProdutos,setListaProdutos] = useState([]);
-  const [reload,setReload] = useState(false);
-
 
   useEffect(() => {
     axios.get("http://localhost:8080/carrinhoCompras",{ headers: authHeader() })
       .then(res=>{
         setListaPedidos(res.data);
       });
+    axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
+      .then(res => {setListaProdutos(res.data)})
       
   }, []);
 
@@ -26,16 +26,7 @@ export default function CarrinhoCompras() {
   }
 
 
-  if( listaPedidos.length !== listaProdutos.length ){
-    let produtosArray = [];
-    listaPedidos.map((item) => (
-      axios.get(`http://localhost:8080/produto/${item.idProduto}`,{ headers: authHeader() })
-      .then(res=>{
-        produtosArray.push(res.data)
-        console.log(produtosArray)})
-    ))
-  }
-
+  console.log(listaPedidos);
 
   return (
     <div className={style.container}>
@@ -43,23 +34,25 @@ export default function CarrinhoCompras() {
       <table className={style.tabelaCarrinho}>
         <thead>
           <tr>
+            <th>Nome Produto</th>
+            <th>Valor</th>
             <th>Quantidade</th>
             <th>Status</th>
             <th>Remover</th>
           </tr>
         </thead>
         <tbody>
-        {(listaPedidos.length > 0 && listaPedidos.length === listaProdutos.length )?(
+        {(listaPedidos.length > 0 && listaProdutos.length > 0)?(
           listaPedidos.map((item,index) =>
           (
             <tr key={item.id} className={style.produto}>
+              {listaProdutos.map((element) => ((element.id === item.idProduto)?<td key={element.id}>{element.nome}</td>:null))}
+              {listaProdutos.map((element) => ((element.id === item.idProduto)?<td key={element.id}>R${element.valor},00</td>:null))}
               <td>{item.quantidade}</td> 
               <td>{item.status}</td>
               <td onClick={e => remover(item.idProduto)} className={style.removeBtn}>X</td>
             </tr>
-          )
-          )
-        )
+          )))
           :
         <tr><td>Carrinho Vazio</td></tr>}
         </tbody>

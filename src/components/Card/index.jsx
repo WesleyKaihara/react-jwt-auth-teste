@@ -5,7 +5,7 @@ export default function Card(props) {
 
   const { src, alt, title, valor, href } = props
   return (
-    <a href={"/produto/" + href}>
+    <a href={"/produto/" + href} title={title}>
       <div className={style.card}>
         <img src={require("../../../../../../imagens/" + src)} alt={alt} className={style.cardImg} />
         <h1 className={style.title}>{title}</h1>

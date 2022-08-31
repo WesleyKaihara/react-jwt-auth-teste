@@ -8,14 +8,20 @@ $color7:#189300;
 
 .card{
   cursor: pointer;
-  padding: 2.5em 0;
-  width: 10em;
+  margin-top: 2em;
+  padding: 2.5em;
+  width: 15em;
+  transition: all .3s;
+  &:hover{
+    box-shadow: 0 0 10px #ccc;
+  }
   .cardImg{
     width: 100%;
   }
   .title{
     text-align: center;
     padding: 1em;
+    color: $color5;
   }
   small{
     font-size: .7em;

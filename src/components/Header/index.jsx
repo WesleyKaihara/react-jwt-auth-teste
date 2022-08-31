@@ -14,6 +14,11 @@ export default function Header() {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
   const [currentUser, setCurrentUser] = useState(undefined);
   const [quantidade, setQuantidade] = useState(0);
+  const [listaProdutos,setListaProdutos] = useState([]);
+  const [itensCarrinho,setItensCarrinho] = useState([]);
+  const [valorTotal,setValorTotal] = useState({valor:0,itens:0});
+  const [pesquisa,setPesquisa] = useState("");
+
 
   function logOut() {
     AuthService.logout();
@@ -35,11 +40,23 @@ export default function Header() {
 
     axios.get("http://localhost:8080/carrinhoCompras",{ headers: authHeader() })
       .then(res => {
-        console.log(res.data);
+        setItensCarrinho(res.data);
         setQuantidade(res.data.length);
       })
 
+    axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
+      .then(res => {setListaProdutos(res.data)})
   }, [])
+  
+
+  if(valorTotal.itens !== itensCarrinho.length){
+    listaProdutos.map((produto) => (
+      itensCarrinho.map((item) => (
+        (item.idProduto === produto.id)?setValorTotal({valor:valorTotal.valor + produto.valor,itens:valorTotal.itens + 1}):null
+      ))
+    ))
+  }
+
 
   return (
     < header className={style.header} >
@@ -49,8 +66,10 @@ export default function Header() {
           type="search"
           name="buscaProduto"
           className={style.input}
+          value={pesquisa}
+          onChange={e => setPesquisa(e.target.value)}
           placeholder="Buscar Produto" />
-        <button className={style.buscaBtn}>Buscar</button>
+        <button className={style.buscaBtn} onClick={() => window.location.href = "/pesquisa/"+pesquisa}>Buscar</button>
       </div>
       <nav className={style.nav}>
         {currentUser ? (
@@ -77,7 +96,7 @@ export default function Header() {
 
         <div className={style.valorTotalContainer}>
           <small className={style.small}>Total</small>
-          <p className={style.valorTotal}>100</p>
+          <p className={style.valorTotal}>{valorTotal.valor}</p>
         </div>
         {currentUser ? (
           <a href="/login" className={style.navItem} onClick={logOut}>

@@ -6,16 +6,11 @@ $color5:#1c0021;
 $color6:#f1f1f1;
 
 
-.container{
-  padding: 5% 10% ;
-  .content{
+.pesquisaContainer{
+  padding: 6em 10%;
+  .pesquisaItens{
     display: flex;
-    gap: 2em;
-    justify-content: space-evenly;
+    gap: 2em ;
     flex-wrap: wrap;
   }
 }
-.title{
-  font-size: 2.5em;
-}
-

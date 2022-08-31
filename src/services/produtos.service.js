@@ -12,7 +12,4 @@ export default new class ProdutosService {
     return axios.get(API_URL + '/img/' + nomeImagem);
   }
 
-  // getAdminBoard() {
-  //   return axios.get(API_URL + 'admin', { headers: authHeader() });
-  // }
 }()

@@ -9,6 +9,7 @@ import BoardAdmin from "../components/board-admin.component";
 import Contato from '../Pages/Contato';
 import Produto from '../Pages/Produto';
 import CarrinhoCompras from '../Pages/CarrinhoCompras';
+import Pesquisa from '../Pages/Pesquisa';
 
 import { Switch, Route } from "react-router-dom";
 
@@ -24,10 +25,11 @@ export default function Rotas() {
         <Route path="/user" component={BoardUser} />
         <Route path="/mod" component={BoardModerator} />
         <Route path="/admin" component={BoardAdmin} />
-        <Route path="/contato" component={Contato} />
+        <Route exact path="/contato" component={Contato} />
         <Route path="/produto/:id" component={Produto} />
-        <Route path="/carrinhoCompras" component={CarrinhoCompras} />
+        <Route path="/pesquisa/:nomeProduto" component={Pesquisa} />
+        <Route exact path="/carrinhoCompras" component={CarrinhoCompras} />
       </Switch>
     </div>
-  )
+  );
 }

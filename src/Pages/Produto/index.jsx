@@ -41,6 +41,8 @@ export default function Produto() {
     window.location.reload();
   }
 
+  console.log(quantidade);
+
   return (
     <div className={style.container}>
       {(info) ?
@@ -87,7 +89,7 @@ export default function Produto() {
                 name="quantidade" 
                 className={style.quantidadeInput}
                 value={quantidade}
-                onChange={(e)=> setQuantidade(e.value)}
+                onChange={(e)=> setQuantidade(e.target.value)}
                 /><br />
                 {(isInCart) ?
               <a href="/carrinhoCompras"><p className={style.btn}>Ir para Carrinho</p></a>:

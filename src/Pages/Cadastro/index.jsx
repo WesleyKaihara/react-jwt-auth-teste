@@ -6,17 +6,23 @@ import AuthService from "../../services/auth.service";
 import fundo from '../../images/banner02.jpg';
 import { useState } from 'react';
 
-export default function Login() {
+export default function Cadastro() {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
 
-  function handleLogin(e) {
+
+  function handleRegister(e) {
     e.preventDefault();
 
-    AuthService.login(username, password).then(
+    AuthService.register(username,email,password).then(
       () => {
-        window.location = "/profile";
+        AuthService.login(username,password).then(
+          () => {
+            window.location.href = "/profile";
+          }
+        );
       }
     );
   }
@@ -26,11 +32,12 @@ export default function Login() {
       <img src={fundo} alt="fundo" className={style.fundo} />
       <div className={style.loginContainer}>
         <h1 className={style.title}>Já tenho Cadastro</h1>
-        <p className={style.newConta}>Não tem uma conta? <a href="/register">Cadastrar</a></p>
+        <p className={style.newConta}>Não tem uma conta? <a href="/">Cadastrar</a></p>
         <Form
-          onSubmit={(e) => handleLogin(e)}
+          onSubmit={(e) => handleRegister(e)}
           className={style.form}
         >
+          <input type="hidden" name="role" value="ROLE_USER"/>
           <label htmlFor="username">Usuário</label>
           <input
             autoComplete="off"
@@ -39,6 +46,15 @@ export default function Login() {
             name='username'
             onChange={e => setUsername(e.target.value)}
             value={username}
+          />
+          <label htmlFor="email">E-mail</label>
+          <input
+            autoComplete="off"
+            type="email"
+            placeholder='nome@email.com'
+            name='email'
+            onChange={e => setEmail(e.target.value)}
+            value={email}
           />
           <label htmlFor="password">Senha</label>
           <input

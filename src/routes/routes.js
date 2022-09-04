@@ -1,6 +1,6 @@
 import React from 'react'
 import Login from "../Pages/Login/login.component";
-import Register from "../components/register.component";
+import Register from "../Pages/Cadastro";
 import Home from "../Pages/Home/home.component";
 import Profile from "../Pages/Perfil";
 import BoardUser from "../components/board-user.component";
@@ -28,7 +28,7 @@ export default function Rotas() {
         <Route path="/admin" component={BoardAdmin} />
         <Route exact path="/contato" component={Contato} />
         <Route path="/produto/:id" component={Produto} />
-        <Route path="/pesquisa/:nomeProduto" component={Pesquisa} />
+        <Route path="/pesquisa/:busca" component={Pesquisa} />
         <Route exact path="/carrinhoCompras" component={CarrinhoCompras} />
         <Route path="/blog" component={Blog} />
       </Switch>

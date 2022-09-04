@@ -51,7 +51,7 @@ export default function Profile() {
           name="telefone"
           value={currentUser.telefone} 
           placeholder="(XX)X XXXX-XXXX"/>
-           <a href="" className={style.nomeSenha}>Alterar senha</a>
+           <a href="/" className={style.nomeSenha}>Alterar senha</a>
           <button type="submit">Salvar</button>
         </form> : null}
         <div className={style.enderecoContainer}>

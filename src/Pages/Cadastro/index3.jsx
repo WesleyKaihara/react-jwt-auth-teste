@@ -4,7 +4,7 @@ import Input from "react-validation/build/input";
 import CheckButton from "react-validation/build/button";
 import { isEmail } from "validator";
 
-import AuthService from "../services/auth.service";
+import AuthService from "../../services/auth.service";
 
 const required = value => {
   if (!value) {
@@ -132,9 +132,6 @@ export default class Register extends Component {
 
           <Form
             onSubmit={this.handleRegister}
-            ref={c => {
-              this.form = c;
-            }}
           >
             {!this.state.successful && (
               <div>

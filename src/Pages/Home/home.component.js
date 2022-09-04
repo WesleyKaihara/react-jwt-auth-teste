@@ -22,7 +22,7 @@ export default function Home() {
   return (
     <section>
       <div className={style.container}>
-        <h1 className={style.title}>Novidades</h1>
+        <h1 className={style.title}>Produtos</h1>
         <div className={style.content}>
           {(produtos.length > 0) ? (
             produtos.map(produto => {

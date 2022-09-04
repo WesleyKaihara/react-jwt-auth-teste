@@ -52,7 +52,7 @@ export default function Header() {
   if(valorTotal.itens !== itensCarrinho.length){
     listaProdutos.map((produto) => (
       itensCarrinho.map((item) => (
-        (item.idProduto === produto.id)?setValorTotal({valor:valorTotal.valor + produto.valor,itens:valorTotal.itens + 1}):null
+        (item.idProduto === produto.id)?setValorTotal({valor:valorTotal.valor + produto.valor * item.quantidade,itens:valorTotal.itens + 1}):null
       ))
     ))
   }

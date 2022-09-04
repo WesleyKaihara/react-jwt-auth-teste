@@ -18,9 +18,7 @@ export default function CarrinhoCompras() {
       });
     axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
       .then(res => {setListaProdutos(res.data)})
-      
-  }, []);
-
+  }, [])
   function remover(idProduto){
     axios.delete(`http://localhost:8080/carrinhoCompras/${idProduto}`,{ headers: authHeader() })
       .then(res => window.location.href = "/carrinhoCompras")
@@ -34,11 +32,16 @@ export default function CarrinhoCompras() {
     ))
   }
 
-  function mudaQuantidade(){
-    axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
-      .then(res => {setListaProdutos(res.data)})
+  function changeQuantidade(event,idCarrinho,novaQuantidade){
+    (event === "-")?
+    axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
+    .then(setValorTotal({itens:valorTotal.itens - 1}))
+    :
+    axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
+    window.location.reload();
   }
 
+  console.log(listaPedidos)
   return (
     <section className={style.container}>
       <h1>Carrinho Compras - {listaPedidos.length} produto(s)</h1>
@@ -47,10 +50,10 @@ export default function CarrinhoCompras() {
         <thead>
           <tr>
             <th>Produto</th>
-            <th>Valor</th>
+            <th>Preço unitário</th>
             <th>Quantidade</th>
             <th>Status</th>
-            <th>Remover</th>
+            <th>Excluir</th>
           </tr>
         </thead>
         <tbody>
@@ -71,13 +74,16 @@ export default function CarrinhoCompras() {
                       <td key={element.id} className={style.cartInfo}>R${element.valor},00</td>
                       :null
                   ))}
-              <td className={style.cartInfo}><a href="/" className={style.mudarValor}>-</a> {item.quantidade} <a href="/" className={style.mudarValor}>+</a> </td> 
+              <td className={style.cartInfo}>
+                <button onClick={e =>changeQuantidade("-",item.id,parseInt(item.quantidade)-1)} disabled={item.quantidade === "1"} className={style.mudarValor}>-</button> 
+                  {item.quantidade} 
+                <button onClick={e =>changeQuantidade("+",item.id,parseInt(item.quantidade)+1)} className={style.mudarValor}>+</button> </td> 
               <td className={style.cartInfo}>{item.status}</td>
               <td onClick={e => remover(item.idProduto)} className={style.removeBtn}>Remover</td>
             </tr>
           )))
           :
-        <tr><td>Carrinho Vazio</td></tr>}
+        <tr><td colspan="6">Carrinho Vazio</td></tr>}
         </tbody>
       </table>
       <div className={style.resumo}>

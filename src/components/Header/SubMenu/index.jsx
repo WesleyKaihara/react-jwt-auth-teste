@@ -24,8 +24,7 @@ export default function SubMenu() {
         <div className={style.links}>
           <a href="/blog"><p> Blog</p></a>
           <a href="/"><p><FontAwesomeIcon icon={faStar} className={style.icon} />Comunidade</p></a>
-          <a href="/"><p><FontAwesomeIcon icon={faClockRotateLeft} className={style.icon} />Lançamentos</p></a>
-          <a href="/contato"><p><FontAwesomeIcon icon={faHeadset} className={style.icon} />Contato</p></a>
+          <a href="/contato"><p><FontAwesomeIcon icon={faHeadset} className={style.icon} />Ajuda</p></a>
           <a href="/">
             <h2 className={style.rastreio}>
               Rastreio

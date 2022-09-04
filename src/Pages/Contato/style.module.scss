@@ -7,29 +7,29 @@ $color6:#f1f1f1;
 
 
 .contatoContainer{
+  margin-top: 6em;
   .bannerContainer{
     background: #fff;
     height: 25em;
     overflow: hidden;
-    text-align: center;
-    position: relative;
-    .banner{
-      width:100%;
-      margin-top: -15%;
-    }
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: url("../../images/bannerAjuda.svg");
+    background-size:cover;
+    flex-direction: column;
+    gap: 2em;
   }
   .title{
-    position: absolute;
-    top: 0;
-    padding-top: 3em;
-    width: 100%;
-    text-align: center;
-    font-size:4em;
-    font-weight: bold;
-    color: $color2; 
-    height: 25em;
-    -webkit-backdrop-filter: blur(3px);
-    backdrop-filter: blur(3px);
+    font-size: 4em;
+    color: $color2;
+  }
+  .inputContato{
+    width: 65%;
+    font-size: 1em;
+    padding: 1.4em;
+    border-radius: 50px;
   }
   .contatoContent{
     padding: 5% 10% ;

@@ -8,4 +8,66 @@ $color6:#f1f1f1;
 
 .container{
   padding: 6em 10%;
+  display: flex;
+  justify-content: center;
+  gap: 5em;
+  .title{
+    font-size: 2em;
+  }
+  .formUser{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    background: #f7f7f7;
+    padding: 2em;
+   
+    .nomeSenha{
+      margin: 1em 0;
+      color: $color2;
+      transition: all .5s;
+      &:hover{
+        filter: brightness(150%);
+      }
+    }
+  }
+  .enderecoContainer{
+    background: #f7f7f7;
+    padding: 1em;
+    width: 35%;
+    .formEndereco{
+      display: flex;
+      flex-direction: column;
+    }
+    .endereco_grid{
+      margin-top: 1em;
+      display: grid;
+      grid-template-columns: 60% 35%;
+      gap: 5%;
+    }
+    .endereco_column{
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  label{
+    margin:.8em 0 ;
+  }
+  input{
+    width: 100%;
+    padding: 1em 1em;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  button{
+    background: $color2;
+    border: none;
+    margin-top: 1em;
+    padding: 1.2em 1em;
+    cursor: pointer;
+    transition: all .5s;
+    color: $color6;
+    &:hover{
+      filter: brightness(120%);
+    }
+  }
 }

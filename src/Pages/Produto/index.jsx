@@ -14,7 +14,7 @@ export default function Produto() {
   const [isInCart, setIsInCart] = useState(false);
   const [quantidade,setQuantidade] = useState(1);
   const [diametro,setDiametro] = useState(1.75);
-  const [peso,setPeso] = useState("1kg");
+  const [peso,setPeso] = useState(1000);
 
 
   useEffect(() => {
@@ -68,10 +68,10 @@ export default function Produto() {
                 value={peso}
                 onChange={(e)=> setPeso(e.value)}            
                 >
-                  <option value="1kg">1kg</option>
-                  <option value="500g">500g</option>
-                  <option value="200g">200g</option>
-                  <option value="50g">50g</option>
+                  <option value={1000}>1kg</option>
+                  <option value={500}>500g</option>
+                  <option value={200}>200g</option>
+                  <option value={50}>50g</option>
                 </select>
                 <h2 className={style.subTitle}>Diâmetro</h2>
                 <select 

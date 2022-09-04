@@ -9,26 +9,56 @@ $color7:#189300;
 .card{
   cursor: pointer;
   margin-top: 2em;
-  padding: 2.5em;
+  padding: 2em;
   width: 15em;
   transition: all .3s;
+  box-shadow: 0 0 10px rgb(236, 236, 236);
+  position: relative;
+  overflow: hidden;
   &:hover{
     box-shadow: 0 0 10px #ccc;
   }
   .cardImg{
     width: 100%;
+    z-index: 2;
   }
   .title{
     text-align: center;
     padding: 1em;
     color: $color5;
+    font-size: 1.2em;
   }
-  small{
-    font-size: .7em;
+  .desconto{
+    font-size: 1em;
+    color: $color5;
   }
 }
 
 .valor{
-  color:#189300 ;
-  font-weight: bold;
+  color:$color6 ;
+  font-size: 1.2em;
+  margin-bottom: 1em;
+}
+
+
+.custom_shape_divider_bottom_1662257597 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 400%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+  z-index: -1;
+}
+
+.custom_shape_divider_bottom_1662257597 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 148px;
+}
+
+.custom_shape_divider_bottom_1662257597 .shape_fill {
+  fill: #336EE1;
 }

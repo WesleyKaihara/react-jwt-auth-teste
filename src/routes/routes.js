@@ -12,6 +12,7 @@ import CarrinhoCompras from '../Pages/CarrinhoCompras';
 import Pesquisa from '../Pages/Pesquisa';
 
 import { Switch, Route } from "react-router-dom";
+import Blog from '../Pages/Blog/blog';
 
 
 export default function Rotas() {
@@ -29,6 +30,7 @@ export default function Rotas() {
         <Route path="/produto/:id" component={Produto} />
         <Route path="/pesquisa/:nomeProduto" component={Pesquisa} />
         <Route exact path="/carrinhoCompras" component={CarrinhoCompras} />
+        <Route path="/blog" component={Blog} />
       </Switch>
     </div>
   );

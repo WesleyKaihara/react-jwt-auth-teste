@@ -1,14 +1,12 @@
 import React from 'react';
 import style from './style.module.scss';
 
-import banner from '../../images/banner02.jpg';
-
 export default function Contato() {
   return (
     <section className={style.contatoContainer}>
       <div className={style.bannerContainer}>
-        <img src={banner} alt="banner" className={style.banner} />
-        <h1 className={style.title}>Atendimento ao Cliente</h1>
+        <h1 className={style.title}>Como podemos ajudar</h1>
+        <input type="text" className={style.inputContato} placeholder="Pesquisar na Central de Ajuda"/>
       </div>
       <div className={style.contatoContent}>
         <h1 className={style.subTitle}>Perguntas Frequentes</h1>

@@ -24,33 +24,57 @@ export default function Profile() {
   }
 
   return (
-    <div className={style.container}>
+    <section className={style.container}>
+      
       {(userReady) ?
-        <div>
-          <header className="jumbotron">
-            <h3>
-              <strong>{currentUser.username}</strong> Profile
-            </h3>
-          </header>
-          <p>
-            <strong>Token:</strong>{" "}
-            {currentUser.accessToken.substring(0, 20)} ...{" "}
-            {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-          </p>
-          <p>
-            <strong>Id:</strong>{" "}
-            {currentUser.id}
-          </p>
-          <p>
-            <strong>Email:</strong>{" "}
-            {currentUser.email}
-          </p>
-          <strong>Authorities:</strong>
-          <ul>
-            {currentUser.roles &&
-              currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-          </ul>
-        </div> : null}
-    </div>
+      
+        <form className={style.formUser}>
+          <h1 className={style.title}>Meu Perfil</h1>
+          <label htmlFor="username">Usuário</label>
+          <input 
+          type="text" 
+          placeholder="Username"
+          name='username'
+          value={currentUser.username} />
+          <label htmlFor="email">E-mail</label>
+          <input 
+          id="email"
+          type="email" 
+          name="email" 
+          disabled
+          value={currentUser.email} 
+          placeholder="E-mail"/>
+          <label htmlFor="telefone">Telefone</label>
+          <input 
+          id="telefone"
+          type="text" 
+          name="telefone"
+          value={currentUser.telefone} 
+          placeholder="(XX)X XXXX-XXXX"/>
+           <a href="" className={style.nomeSenha}>Alterar senha</a>
+          <button type="submit">Salvar</button>
+        </form> : null}
+        <div className={style.enderecoContainer}>
+        <h1 className={style.title}>Endereço</h1>
+        <form action="" className={style.formEndereco}>
+          <label htmlFor="cep">CEP</label>
+          <input type="text" name="cep" id="cep" placeholder='XXXXX-XXX' />
+          <div className={style.endereco_grid}>
+            <div className={style.endereco_column}>
+              <label htmlFor="logradouro">Logradouro</label>
+              <input type="text" name="logradouro" id="logradouro" placeholder='Ex:Rua Brasil' />
+            </div>
+            <div className={style.endereco_column}>
+              <label htmlFor="numero">Número</label>
+              <input type="text" name="numero"  id="numero" placeholder='Número' />
+            </div>
+          </div>
+          <label htmlFor="referencia">Refêrencia</label>
+          <input type="text" name="referencia"  id="referencia" placeholder='Ex:Na frente do mercado' />
+          <button type="submit">Salvar Endereço</button>
+        </form>
+        
+        </div>
+    </section>
   );
 }

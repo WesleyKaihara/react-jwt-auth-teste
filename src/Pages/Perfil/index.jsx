@@ -56,7 +56,7 @@ export default function Profile() {
         </form> : null}
         <div className={style.enderecoContainer}>
         <h1 className={style.title}>Endereço</h1>
-        <form action="" className={style.formEndereco}>
+        <form className={style.formEndereco}>
           <label htmlFor="cep">CEP</label>
           <input type="text" name="cep" id="cep" placeholder='XXXXX-XXX' />
           <div className={style.endereco_grid}>

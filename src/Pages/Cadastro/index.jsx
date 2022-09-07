@@ -31,8 +31,8 @@ export default function Cadastro() {
     <section className={style.login}>
       <img src={fundo} alt="fundo" className={style.fundo} />
       <div className={style.loginContainer}>
-        <h1 className={style.title}>Já tenho Cadastro</h1>
-        <p className={style.newConta}>Não tem uma conta? <a href="/">Cadastrar</a></p>
+        <h1 className={style.title}>Criar uma conta</h1>
+        <p className={style.newConta}>Já possui uma conta? <a href="/login">Entrar</a></p>
         <Form
           onSubmit={(e) => handleRegister(e)}
           className={style.form}

@@ -1,0 +1,25 @@
+$color1:#40ffdc;
+$color2:#336ee1;
+$color3:#1c3166;
+$color4:#240047;
+$color5:#1c0021;
+$color6:#f1f1f1;
+
+
+.container{
+  padding: 5% 10% ;
+  .content{
+    display: flex;
+    gap: 2em;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+}
+.title{
+  font-size: 2.5em;
+}
+
+.desc{
+  margin-top: 1em;
+  margin-bottom: 2em;
+}

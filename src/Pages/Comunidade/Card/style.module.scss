@@ -1,0 +1,44 @@
+$color1:#40ffdc;
+$color2:#336ee1;
+$color3:#1c3166;
+$color4:#240047;
+$color5:#1c0021;
+$color6:#f1f1f1;
+$color7:#189300;
+
+.card{
+  .containerImg{
+    overflow: hidden;
+    height: 22em;
+  }
+  cursor: pointer;
+  margin-top: 2em;
+  width: 22em;
+  height: 30em;
+  transition: all .3s;
+  box-shadow: 0 0 10px rgb(236, 236, 236);
+  position: relative;
+  overflow: hidden;
+  &:hover{
+    box-shadow: 0 0 10px #ccc;
+  }
+  .cardImg{
+    width: 100%;
+    width: 100%;
+  }
+  .title{
+    text-align: center;
+    padding: 1em;
+    color: $color5;
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+  .autor{
+    text-align: center;
+    color: #000;
+    margin-top: 2em;
+    &::before{
+      content: "Autor: ";
+    }
+  }
+}

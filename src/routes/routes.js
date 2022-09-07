@@ -13,6 +13,7 @@ import Pesquisa from '../Pages/Pesquisa';
 
 import { Switch, Route } from "react-router-dom";
 import Blog from '../Pages/Blog/blog';
+import Comunidade from '../Pages/Comunidade/comunidade';
 
 
 export default function Rotas() {
@@ -31,6 +32,8 @@ export default function Rotas() {
         <Route path="/pesquisa/:busca" component={Pesquisa} />
         <Route exact path="/carrinhoCompras" component={CarrinhoCompras} />
         <Route path="/blog" component={Blog} />
+        <Route path="/comunidade" component={Comunidade} />
+
       </Switch>
     </div>
   );

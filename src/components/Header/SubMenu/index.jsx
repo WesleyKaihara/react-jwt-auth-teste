@@ -1,6 +1,6 @@
 import React from 'react';
 import style from './style.module.scss';
-import { faStar, faHeadset, faClockRotateLeft, faAngleDown } from '@fortawesome/free-solid-svg-icons'
+import { faStar, faHeadset, faAngleDown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
@@ -23,7 +23,7 @@ export default function SubMenu() {
         </div>
         <div className={style.links}>
           <a href="/blog"><p> Blog</p></a>
-          <a href="/"><p><FontAwesomeIcon icon={faStar} className={style.icon} />Comunidade</p></a>
+          <a href="/comunidade"><p><FontAwesomeIcon icon={faStar} className={style.icon} />Comunidade</p></a>
           <a href="/contato"><p><FontAwesomeIcon icon={faHeadset} className={style.icon} />Ajuda</p></a>
           <a href="/">
             <h2 className={style.rastreio}>

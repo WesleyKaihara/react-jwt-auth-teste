@@ -2,18 +2,16 @@ import React from "react";
 import { useEffect } from 'react';
 import { useState } from 'react';
 import style from './style.module.scss';
+import axios from 'axios';
+import Card from './Card';
 
-import ProdutosService from '../../services/produtos.service';
-import Card from '../../components/Card';
-
-export default function Home() {
+export default function Comunidade() {
 
   const [produtos, setProdutos] = useState([]);
 
-  console.log(produtos);
-  
   useEffect(() => {
-    ProdutosService.getProdutos().then(
+    axios.get("http://localhost:8080/comunidade")
+    .then(
       response => {
         setProdutos(response.data);
       }
@@ -24,18 +22,19 @@ export default function Home() {
   return (
     <section>
       <div className={style.container}>
-        <h1 className={style.title}>Produtos</h1>
+        <h1 className={style.title}>Criações da Comunidade</h1>
+        <p className={style.desc}>Itens desenvolvidos utilizando os materiais 3D LAB</p>
         <div className={style.content}>
           {(produtos.length > 0) ? (
-            produtos.map(produto => {
+            produtos.map(item => {
               return (
                 <Card
-                  href={produto.id}
-                  key={produto.id}
-                  src={produto.nomeImagem}
-                  alt={produto.nome}
-                  title={produto.nome}
-                  valor={produto.valor}
+                  href={item.id}
+                  key={item.id}
+                  src={item.nomeImagem}
+                  alt={item.nome}
+                  title={item.nome}
+                  autor={item.autor}
                 />
               )
             })

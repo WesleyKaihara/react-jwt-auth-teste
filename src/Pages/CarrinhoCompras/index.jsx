@@ -15,10 +15,12 @@ export default function CarrinhoCompras() {
     axios.get("http://localhost:8080/carrinhoCompras",{ headers: authHeader() })
       .then(res=>{
         setListaPedidos(res.data);
+        axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
+        .then(res => {setListaProdutos(res.data)})
       });
-    axios.get(`http://localhost:8080/produto`,{ headers: authHeader() })
-      .then(res => {setListaProdutos(res.data)})
+
   }, [])
+
   function remover(idProduto){
     axios.delete(`http://localhost:8080/carrinhoCompras/${idProduto}`,{ headers: authHeader() })
       .then(res => window.location.href = "/carrinhoCompras")
@@ -27,18 +29,27 @@ export default function CarrinhoCompras() {
   if(valorTotal.itens !== listaPedidos.length){
     listaProdutos.map((produto) => (
       listaPedidos.map((item) => (
-        (item.idProduto === produto.id)?setValorTotal({valor:valorTotal.valor + (produto.valor*item.quantidade),itens:valorTotal.itens + 1}):null
-      ))
+        (item.idProduto === produto.id)?
+        setValorTotal({valor:valorTotal.valor + (produto.valor * item.quantidade),itens:valorTotal.itens + 1})
+        :null
+      )
+      )
     ))
   }
+  
+ function changeQuantidade(event,idCarrinho,novaQuantidade,valorProduto){
 
-  function changeQuantidade(event,idCarrinho,novaQuantidade){
     (event === "-")?
-    axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
-    .then(setValorTotal({itens:valorTotal.itens - 1}))
-    :
-    axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
-    window.location.reload();
+      axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
+      .then(
+        setValorTotal({valor:valorTotal.valor,itens:valorTotal.itens - 1}),
+        window.location.reload()
+        )
+      :
+   axios.get(`http://localhost:8080/carrinhoCompras/changeQuantidade/${idCarrinho}/${novaQuantidade}`,{ headers: authHeader()})
+   .then( 
+    setValorTotal({valor:valorTotal.valor,itens:valorTotal.itens + 1}),
+    window.location.reload())
   }
 
   console.log(listaPedidos)
@@ -69,15 +80,15 @@ export default function CarrinhoCompras() {
                       </td>
                       :null
               ))}
-              {listaProdutos.map((element) => 
+              {listaProdutos.map((element,index) => 
                   ((element.id === item.idProduto)?
                       <td key={element.id} className={style.cartInfo}>R${element.valor},00</td>
                       :null
                   ))}
               <td className={style.cartInfo}>
-                <button onClick={e =>changeQuantidade("-",item.id,parseInt(item.quantidade)-1)} disabled={item.quantidade === "1"} className={style.mudarValor}>-</button> 
+                <button onClick={e =>changeQuantidade("-",item.id,parseInt(item.quantidade) - 1,listaProdutos[index].valor)} disabled={item.quantidade === "1"} className={style.mudarValor}>-</button> 
                   {item.quantidade} 
-                <button onClick={e =>changeQuantidade("+",item.id,parseInt(item.quantidade)+1)} className={style.mudarValor}>+</button> </td> 
+                <button onClick={e =>changeQuantidade("+",item.id,parseInt(item.quantidade) + 1)} className={style.mudarValor}>+</button> </td> 
               <td className={style.cartInfo}>{item.status}</td>
               <td onClick={e => remover(item.idProduto)} className={style.removeBtn}>Remover</td>
             </tr>
